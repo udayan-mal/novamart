@@ -1,0 +1,36 @@
+{
+  "name": "novamart-server",
+  "version": "1.0.0",
+  "description": "NovaMart backend — API Gateway + Microservices",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -n gateway,auth,product,order,seller -c cyan,green,yellow,magenta,blue \"npm run dev:gateway\" \"npm run dev:auth\" \"npm run dev:product\" \"npm run dev:order\" \"npm run dev:seller\"",
+    "dev:gateway": "nodemon gateway/server.js",
+    "dev:auth": "nodemon services/auth/server.js",
+    "dev:product": "nodemon services/product/server.js",
+    "dev:order": "nodemon services/order/server.js",
+    "dev:seller": "nodemon services/seller/server.js",
+    "start": "concurrently \"node gateway/server.js\" \"node services/auth/server.js\" \"node services/product/server.js\" \"node services/order/server.js\" \"node services/seller/server.js\""
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "http-proxy-middleware": "^3.0.3",
+    "@imagekit/nodejs": "^7.3.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5",
+    "morgan": "^1.10.0",
+    "node-cron": "^3.0.3",
+    "nodemailer": "^6.9.16",
+    "stripe": "^17.5.0"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9"
+  }
+}
